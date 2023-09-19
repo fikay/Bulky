@@ -1,0 +1,59 @@
+﻿@model List<Category>
+
+    <div class="container flex-column">
+        <div class="row pt-4">
+            <div class="col-6 pb-2">
+            <h1>Here are the categories</h1>
+            </div>
+            <div class="col-6 text-end pb-2 ">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary"> 
+                <i class="bi bi-plus-circle-fill"></i> Add Category
+                </a>
+            </div>
+            
+            
+        </div>
+        <div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Category Name
+                        </th>
+                        <th>
+                            Display Order
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+                    {
+                        <tr>
+                            <td>@obj.Name</td>
+                            <td>
+                                @obj.DisplayOrder
+                            </td>
+                        <td> 
+                           <div class="row w-75">
+                               <div class=" col-6 ">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-Id ="@obj.Id" class="btn btn-primary form-control">
+                                        <i class="bi bi-pencil-square "></i>Edit
+                                   </a> 
+                               </div>
+                                <div class=" col-6">
+                                    <a asp-controller="Category" asp-action="Delete" class="btn btn-danger form-control">
+                                        <i class="bi bi-trash3 "></i>Delete
+                                    </a> 
+                                </div>
+
+                           </div>
+                            
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
