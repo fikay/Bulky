@@ -5,11 +5,27 @@ The Goal for this project is to create an E-commerce website for movies to compl
 ## Tools 
 - Microsoft Visual Studio 2023 (preview for net 8)
 - SQL Server Management Studio
-
+  
 ## Dependencies
  - Microsoft.EntityFrameworkCore
  - Microsoft.EntityFrameworkCore.SqlServer
  - Microsoft.EntityFrameworkCore.Tools
+   
+## Connecting Database
+The following code is input into the appsettings.json to connect to the database and using the `Microsoft.EntityFrameworkCore` dependencies, we are able to create a class which inherits the DbContext. We also implenet it as a service in the `Program.cs` file.
+To make model changes or seed the database, we run the following command in the Package Manager Console
+
+```
+update-databse
+```
+
+```
+"AllowedHosts": "*",
+"ConnectionStrings": {
+  "DefaultConnection": "Server=FAKS\\FIKAYOMYSQL;Database=Razor;Trusted_Connection=true;TrustServerCertificate=True"
+}
+```
+
 
 ### Category CRUD Operations
 
