@@ -10,10 +10,10 @@ namespace BulkyWeb.DataAccess.Repository.IRepository
     public interface IRepository<T> where T : class
     {
         // It is an Ienumerable as a list of all categories will be returned by the function
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includeProperties = null);
         // An object of type T will be returned.
         // Parameters: LINQ Expression
-        T Get(Expression<Func<T,bool>> filter);
+        T Get(Expression<Func<T,bool>> filter, string? includeProperties = null);
 
         // No return type
         // Parameter: Object of type T 

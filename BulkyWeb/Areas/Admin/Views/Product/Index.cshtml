@@ -1,5 +1,6 @@
 ﻿@model List<Product>
 
+   
 
 <div class="container flex-column my-5">
     <div class="row pt-4">
@@ -7,15 +8,15 @@
             <h1>Here are the Products</h1>
         </div>
         <div class="col-6 text-end pb-2 ">
-            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+            <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
                 <i class="bi bi-plus-circle-fill"></i> Add Product
             </a>
         </div>
 
 
     </div>
-    <div>
-        <table class="table table-bordered table-striped">
+    <div class="table-responsive">
+        <table id="myTable" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
                     <th class="align-middle text-center">
@@ -32,41 +33,20 @@
                     </th>
                     <th class="align-middle text-center">
                         List Price
+                    </th >
+                    <th class="align-middle text-center">
+                        Category
                     </th>
-                    <th></th>
+                    <th ></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var obj in Model.OrderBy(u=>u.Id))
-                {
-                    <tr>
-                        <td class="align-middle text-center">@obj.Title</td>
-                        <td class ="align-middle text-center">@obj.Description</td>
-                        <td class="align-middle text-center">
-                            @obj.ISBN
-                        </td>
-                        <td class="align-middle text-center">@obj.Author</td>
-                        <td class="align-middle text-center">@obj.ListPrice</td>
-                        <td class="align-middle text-center">
-                            <div class="row ">
-                                <div class=" col-6">
-                                    <a asp-controller="Product" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary form-control  ">
-                                        <i class="bi bi-pencil-square "></i>Edit
-                                    </a>
-                                </div>
-                                <div class=" col-6">
-                                    <a asp-controller="Product" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger form-control  ">
-                                        <i class="bi bi-trash3 "></i>Delete
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </td>
-                    </tr>
-                }
+               
             </tbody>
         </table>
     </div>
 
 </div>
+@section Scripts{
+    <script src="~/js/product.js"></script>
+  }
