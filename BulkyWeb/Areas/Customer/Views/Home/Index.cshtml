@@ -25,7 +25,8 @@
                         <p class="col-12 text-center text-dark-emphasis"> As low as :<span class="text-dark-emphasis">@product.Price50.ToString("c")</span></p>
                     </div>
                     <div class="row mx-2 my-2">
-                        <a src="" class="col-12 text-center btn btn-primary"> DETAILS</a>
+
+                        <a asp-controller="Home" asp-action="Details" asp-route-Id="@product.Id" class="col-12 text-center btn btn-primary"> DETAILS</a>
                     </div>
                 </div>
 
