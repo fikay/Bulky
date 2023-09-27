@@ -120,17 +120,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 }
             
           
-                if (ModelState.IsValid)
-                {
-                    _unitOfWork.Product.Update(obj.Product);
-                    _unitOfWork.save();
-                    TempData["Success"] = "Category was updated successfully";
-                    return RedirectToAction("Index", "Product");
-                }
-                return View();
-            
-         
-            
+                //if (ModelState.IsValid)
+                //{
+                //    _unitOfWork.Product.Update(obj.Product);
+                //    _unitOfWork.save();
+                //    TempData["Success"] = "Category was updated successfully";
+                //    return RedirectToAction("Index", "Product");
+                //}
+                //return View(); 
 
 
         }
@@ -214,7 +211,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult deleteProduct(int id)
         {
-            if (id == null || id == 0)
+            if ( id == 0)
             {
                 return NotFound();
             }
