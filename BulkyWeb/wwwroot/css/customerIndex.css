@@ -1,0 +1,22 @@
+﻿
+#details {
+   width:200px; 
+   height:200px;
+}
+
+
+
+
+/*@media (min-width: 1006px) {
+    p {
+        font-size: 14px;
+    }
+}*/
+
+
+@media (max-width : 767px){
+    #details{
+        width: 100%;
+        
+    }
+}

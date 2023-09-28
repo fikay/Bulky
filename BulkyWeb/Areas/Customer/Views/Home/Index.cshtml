@@ -2,34 +2,40 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row   my-5">
+<div class="row my-5">
     @foreach(var product in Model)
     {
-        <div class="col-lg-3 col-md-3 card mx-2 my-2 shadow border-0 border-top border-success" style=" max-height:700px">
+        <div class="col-lg-3 col-md-5  card mx-2 my-2 shadow border-0 border-top border-success" style=" max-height:700px">
             <div class="row" >
                 <div class="d-flex my-2 align-items-center justify-content-center rounded ">
                     <img class="img-fluid border-3 " src="@(String.IsNullOrEmpty(product.ImageUrl )  != true?product.ImageUrl:"\\images\\product\\noImage.jpg" )" style="object-fit:contain;width:300px;height:350px" alt="Book images" />
                 </div>
-                <div class="d-flex flex-column">
-                    <div class="row ">
-                        <main class="col-12 text-center fs-4">@product.Title.ToUpper()</main>
-                    </div>
-                    <div class="row ">
-                        <p class="col-12 text-center">By: <span class="text-warning">@product.Author.ToUpper()</span></p>
-                    </div>
-                    <div class="row ">
-                        <p class="col-12 text-center text-body"> List Price :<span class="text-decoration-line-through">@product.ListPrice.ToString("c")</span></p>
-                    </div>
-                    <div class="row ">
-                        <p class="col-12 text-center text-dark-emphasis"> As low as :<span class="text-dark-emphasis">@product.Price50.ToString("c")</span></p>
-                    </div>
-                    <div class="row mx-2 my-2">
-                        <a asp-controller="Home" asp-action="Details" asp-route-Id="@product.Id" class="col-12 text-center btn btn-primary"> DETAILS</a>
+                <div  class="d-flex flex-column align-content-center ">
+                    <div id="details" class="d-flex flex-column justify-content-center mx-auto" >
+                        <div class="d-flex ">
+                            <p class="col-12 text-center fs-4">@product.Title.ToUpper()</p>
+                        </div>
+                        <div class="row ">
+                            <p class="col-12 text-center">By: <span class="text-warning">@product.Author.ToUpper()</span></p>
+                        </div>
+                        <div class="row ">
+                            <p class="col-12 text-center text-body"> List Price :<span class="text-decoration-line-through">@product.ListPrice.ToString("c")</span></p>
+                        </div>
+                        <div class="row ">
+                            <p class="col-12 text-center text-dark-emphasis"> As low as :<span class="text-dark-emphasis">@product.Price50.ToString("c")</span></p>
+                        </div>
                     </div>
                 </div>
-
+                <div class="row mx-auto my-2">
+                    <a asp-controller="Home" asp-action="Details" asp-route-Id="@product.Id" class="col-12 text-center btn btn-primary"> DETAILS</a>
+                </div>
               
             </div>
         </div>
     }
 </div>
+
+
+@* @section Styles {
+    <style src="~/css/customerIndex.css"/>
+}     *@
