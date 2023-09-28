@@ -62,3 +62,20 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 The ICategoryRepository was then implemented in the category Controller
 
+
+### Identity and Authentication
+Introducing Identity and authentication into the application using the ASP.NETCore.Identity.EntityFrameworkcore.
+
+We inherited the IdentityDbcontext from the package and now we will be scafolding the project for identity.
+```
+public class ApplicationDbContext : IdentityDbContext{
+
+}
+
+This is required in order for it to work
+ protected override void OnModelCreating(ModelBuilder modelBuilder)
+ {
+     base.OnModelCreating(modelBuilder);
+}
+```
+
