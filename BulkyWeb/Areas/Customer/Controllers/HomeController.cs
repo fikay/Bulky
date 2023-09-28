@@ -16,11 +16,12 @@ namespace BulkyWeb.Areas.Customer.Controllers
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
+
             List<Product> productList= _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             return View(productList);
         }
