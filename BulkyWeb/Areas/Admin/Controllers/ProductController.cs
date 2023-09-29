@@ -6,10 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BulkyWeb.Models.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using BulkyWeb.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
 
