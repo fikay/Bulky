@@ -15,6 +15,8 @@ namespace BulkyWeb.Data
 
         public DbSet<Product> products { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
