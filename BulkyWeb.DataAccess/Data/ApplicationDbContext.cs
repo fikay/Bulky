@@ -17,9 +17,12 @@ namespace BulkyWeb.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Company> Companies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Company>().HasKey(e => e.Id);
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
@@ -113,6 +116,10 @@ namespace BulkyWeb.Data
                     ImageUrl = ""
                 }
             );
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id=3, Name= "Delicious Snacks" , City ="Vancouver", PostalCode = "K1V0E7", State = "Alberta", StreetAddress ="12223 lesington street", PhoneNumber= "306-888-9999"}
+                
+                );
         }
 
         
