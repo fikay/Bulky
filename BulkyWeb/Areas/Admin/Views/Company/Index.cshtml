@@ -1,0 +1,52 @@
+﻿
+
+   
+
+<div class="container flex-column my-5">
+    <div class="row pt-4">
+        <div class="col-6 pb-2">
+            <h1>Here are the Companies</h1>
+        </div>
+        <div class="col-6 text-end pb-2 ">
+            <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle-fill"></i> Add Company
+            </a>
+        </div>
+
+
+    </div>
+    <div class="table-responsive">
+        <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="align-middle text-center">
+                        Name
+                    </th>
+                    <th class="align-middle text-center">
+                        Address
+                    </th>
+                    <th class="align-middle text-center">
+                        City
+                    </th>
+                    <th class="align-middle text-center">
+                        State
+                    </th>
+                    <th class="align-middle text-center">
+                        Postal Code
+                    </th >
+                    <th class="align-middle text-center">
+                        Phone Number
+                    </th>
+                    <th ></th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/js/Company.js"></script>
+  }

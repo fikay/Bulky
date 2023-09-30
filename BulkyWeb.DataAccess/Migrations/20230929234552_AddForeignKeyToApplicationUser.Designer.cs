@@ -4,6 +4,7 @@ using BulkyWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230929234552_AddForeignKeyToApplicationUser")]
+    partial class AddForeignKeyToApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,18 +103,6 @@ namespace BulkyWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 3,
-                            City = "Vancouver",
-                            Name = "Delicious Snacks",
-                            PhoneNumber = "306-888-9999",
-                            PostalCode = "K1V0E7",
-                            State = "Alberta",
-                            StreetAddress = "12223 lesington street"
-                        });
                 });
 
             modelBuilder.Entity("BulkyWeb.Models.Product", b =>
