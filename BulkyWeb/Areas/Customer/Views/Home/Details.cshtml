@@ -1,77 +1,82 @@
-﻿@model Product
+﻿@model ShoppingCart
 
-<div>
-    <div class="my-3">
-        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">BACK TO HOME</a>
-    </div>
-    <div class="border-0 shadow my-1">
-        <div class="rounded">
-            <p class="text-center fs-4 rounded-top bg-success-subtle" ">@Model.Title</p>
-        </div>
-        <div class="d-flex flex-row align-items-center mx-5 my-3" style="min-height:600px">
-            <div class="d-flex flex-column rounded my-1">
-                <img class="img-fluid rounded" style="width:400px; height:500px" src="@(String.IsNullOrEmpty(Model.ImageUrl) != true ? Model.ImageUrl : "\\images\\product\\noImage.jpg")" alt="Book image" />
+<form method="post">
+      <div>
+            <div class="my-3">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">BACK TO HOME</a>
             </div>
-            <div class="p-2  d-flex flex-grow-1 flex-column mx-5">
-                <p class="text-start fs-3 align-self-start">By: @Model.Author.ToUpper()</p>
-                <p class="text-start  align-self-start">ISBN: @Model.ISBN</p>
-                <p class="text-center  align-self-start rounded-2 bg-primary text-white">@Model.Category.Name</p>
-                <p class="text-start fs-6 align-items-center">List Price: @Model.Price.ToString("c")</p>
+            <div class="border-0 shadow my-1">
+                 <div class="rounded">
+                     <p class="text-center fs-4 rounded-top bg-success-subtle">@Model.Product.Title</p>
+                </div >
+                <div class="d-flex flex-row align-items-center mx-5 my-3" style="min-height:600px">
+                    <div class="d-flex flex-column rounded my-1">
+                        <img class="img-fluid rounded" style="width:400px; height:500px" src="@(String.IsNullOrEmpty(Model.Product.ImageUrl) != true ? Model.Product.ImageUrl : "\\images\\product\\noImage.jpg")" alt="Book image" />
+                    </div>
+                <div class="p-2  d-flex flex-grow-1 flex-column mx-5">
+                    <p class="text-start fs-3 align-self-start">By: @Model.Product.Author.ToUpper()</p>
+                    <p class="text-start  align-self-start">ISBN: @Model.Product.ISBN</p>
+                    <p class="text-center  align-self-start rounded-2 bg-primary text-white">@Model.Product.Category.Name</p>
+                    <p class="text-start fs-6 align-items-center">List Price: @Model.Product.Price.ToString("c")</p>
 
-                <table class="mb-3 ">
-                    <thead class=" border-bottom">
-                        <tr>
-                            <th class="text-center">
-                                Quantity
-                            </th>
-                            <th class="text-center">
-                                1 - 50
-                            </th>
-                            <th class="text-center">
-                                51 - 100
-                            </th>
-                            <th class="text-center">
-                                100+
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">
-                                @Model.ListPrice.ToString("c")
-                                                </td>
-                                                <td class="text-center">
-                                @Model.Price.ToString("c")
-                                                </td>
-                                                <td class="text-center">
-                                @Model.Price50.ToString("c")
-                                                </td>
-                                                <td class="text-center">
-                                @Model.Price100.ToString("c")
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="row" style="max-width:500px">
-                    <p style="overflow-wrap:break-word " class="text-dark">
-                        <span class="fw-bold">Description: </span> @Html.Raw(Model.Description)
-                    </p>
-                </div>
-                <div class="row ">
-                    <div class="col-3">
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text bg-primary-subtle fw-bold" id="basic-addon1">Count</span>
-                            <input type="number" class="form-control text-center" style="width:40px" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
+                    <table class="mb-3 ">
+                        <thead class=" border-bottom">
+                            <tr>
+                                <th class="text-center">
+                                    Quantity
+                                </th>
+                                <th class="text-center">
+                                    1 - 50
+                                </th>
+                                <th class="text-center">
+                                    51 - 100
+                                </th>
+                                <th class="text-center">
+                                    100+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    @Model.Product.ListPrice.ToString("c")
+                                </td>
+                                <td class="text-center">
+                                    @Model.Product.Price.ToString("c")
+                                </td>
+                                <td class="text-center">
+                                    @Model.Product.Price50.ToString("c")
+                                </td>
+                                <td class="text-center">
+                                    @Model.Product.Price100.ToString("c")
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row" style="max-width:500px">
+                        <p style="overflow-wrap:break-word " class="text-dark">
+                            <span class="fw-bold">Description: </span> @Html.Raw(Model.Product.Description)
+                        </p>
+                    </div>
+                    <div class="row ">
+                        <div class="col-3">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text bg-primary-subtle fw-bold" id="basic-addon1">Count</span>
+                                <input type="number" asp-for = "Count" class="form-control text-center" style="width:40px" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row " style="max-width:300px">
-                    <a class="text-uppercase btn btn-primary">add to cart (coming soon......)</a>
-                </div>
+                    <input hidden asp-for = "ProductId"></input>
+                    <input hidden asp-for="Id" value="@Model.Id"></input>
+                    <div class="row " style="max-width:300px">
+                        <button type="submit" asp-controller="Home"  asp-action="Details" class="text-uppercase btn btn-primary">add to cart</button>
+                    </div>
 
+                </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+      </div>
+</form>
+
 

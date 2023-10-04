@@ -16,6 +16,7 @@ namespace BulkyWeb.Data
         public DbSet<Product> products { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<Company> Companies { get; set; }
 
@@ -120,6 +121,10 @@ namespace BulkyWeb.Data
                 new Company { Id=3, Name= "Delicious Snacks" , City ="Vancouver", PostalCode = "K1V0E7", State = "Alberta", StreetAddress ="12223 lesington street", PhoneNumber= "306-888-9999"}
                 
                 );
+
+            //modelBuilder.Entity<ShoppingCart>().HasData(
+            //    new ShoppingCart { Id = 3, ProductId = 4444, Count = 5, ApplicationUserId = "32628229" }
+            //    );
         }
 
         
