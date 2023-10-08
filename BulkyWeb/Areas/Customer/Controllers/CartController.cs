@@ -93,7 +93,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 				cart.Price = GetPriceBasedOnQuantity(cart);
 				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
-			if (ApplicationUser.CompanyId == 0)
+			if (ApplicationUser.CompanyId == 0 || ApplicationUser.CompanyId == null)
 			{
                 ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
                 ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
@@ -121,7 +121,9 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 _unitOfWork.save();
             }
 
-			if (ApplicationUser.CompanyId == 0)
+            //if(_unitOfWork.OrderHeader.)
+
+			if (ApplicationUser.CompanyId == 0 || ApplicationUser.CompanyId == null)
 			{
                 var domain = "https://localhost:7055/";
                 //go to stripe
@@ -159,10 +161,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
 			}
-            else
-            {
-               
-            }
+
 
 			return RedirectToAction(nameof(OrderConfirmation),  new { id = ShoppingCartVM.OrderHeader.Id });
 		}

@@ -17,11 +17,12 @@ function loadDataTable(query) {
     dataTable = $('#myTable').DataTable({
         "ajax": { url: url, data: 'data' },
         "columns": [
-            { data: 'id', "width": "12%" },
+            { data: 'id', "width": "5%" },
             { data: 'name' },
             { data: 'applicationUser.phoneNumber' },
             { data: 'applicationUser.email', "width": "10%" },
             { data: 'orderStatus' },
+            /*{ data: 'paymentStatus' },*/
             { data: 'orderTotal' },
             {
                 data: 'id',

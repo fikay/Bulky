@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.DataAccess.Repository.IRepository;
 using BulkyWeb.Models;
+using BulkyWeb.Utility;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,30 @@ namespace BulkyWeb.DataAccess.Repository
         {
             _db.Update(obj);
         }
-		void IOrderHeaderRepository.UpdateStatus(int id, string orderStatus, string? paymentStatus)
+
+       void IOrderHeaderRepository.UpdateShipping(int id, string carrier, string trackingNumber)
+        {
+            var orderFromDb = _db.OrderHeaders.FirstOrDefault(x => x.Id == id);
+            if (orderFromDb != null)
+            {
+                if (!string.IsNullOrEmpty(carrier))
+                {
+                    orderFromDb.Carrier = carrier;
+                }
+                if (!string.IsNullOrEmpty(trackingNumber))
+                {
+                    orderFromDb.TrackingNumber = trackingNumber;
+                }
+
+                if(orderFromDb.PaymentStatus == SD.PaymentStatusDelayedPayment)
+                {
+                    orderFromDb.ShippingDate = DateTime.Now;
+                    orderFromDb.PaymentDueDate =DateOnly.FromDateTime(DateTime.Now.AddDays(30));
+                }
+            }
+        }
+
+        void IOrderHeaderRepository.UpdateStatus(int id, string orderStatus, string? paymentStatus )
 		{
             var orderFromDb = _db.OrderHeaders.FirstOrDefault(x => x.Id == id);
             if(orderFromDb != null)
