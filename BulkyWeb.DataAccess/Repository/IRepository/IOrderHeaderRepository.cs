@@ -12,7 +12,10 @@ namespace BulkyWeb.DataAccess.Repository.IRepository
     {
         void Update(OrderHeader obj);
 
-        void UpdateStatus(int id, string orderStatus, string? paymentStatus);
+        void UpdateShipping(int id, string carrier, string trackingNumber);
+        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
         void updateStripePaymentID(int id, string sessionId, string paymentIntentId);
+
+        //void CancelOrder(int id, string orderStatus, string paymentStatus);
     }
 }

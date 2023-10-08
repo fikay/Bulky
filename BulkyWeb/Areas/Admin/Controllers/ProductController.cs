@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    [CustomAuthorize(SD.Role_Admin, SD.Role_Employee)]
     public class ProductController : Controller
     {
 
@@ -25,11 +25,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
-        {
-           
-            List<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties : "Category").ToList();
-           
-            return View(ProductList);
+        {  
+            return View();
         }
         //Merging both Create and Update route
         public IActionResult Upsert(int ? id)

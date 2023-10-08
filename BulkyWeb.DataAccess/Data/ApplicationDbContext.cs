@@ -23,6 +23,9 @@ namespace BulkyWeb.Data
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        //public DbSet<Status> Statuses { get; set; }
+
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,6 +36,14 @@ namespace BulkyWeb.Data
                  new Category { Id = 3, Name = "Drama", DisplayOrder = 3 },
                   new Category { Id = 4, Name = "Reality", DisplayOrder = 4 }
                 );
+            //modelBuilder.Entity<Status>().HasData(
+            //    new Status { Id=1, OrderStatus = "Pending" },
+            //    new Status { Id = 2, OrderStatus = "Approved" },
+            //    new Status { Id = 3, OrderStatus = "Processing" },
+            //    new Status { Id = 4, OrderStatus = "Shipped" },
+            //    new Status { Id = 5, OrderStatus = "Cancelled" },
+            //    new Status { Id = 6, OrderStatus = "Refunded" }
+            //    );
 
             modelBuilder.Entity<Product>().HasData(
                 new Product
