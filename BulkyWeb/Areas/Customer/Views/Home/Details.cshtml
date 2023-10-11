@@ -1,6 +1,6 @@
 ﻿@model ShoppingCart
 
-<form method="post">
+<form id="form" method="post">
       <div>
             <div class="my-3">
                 <a asp-controller="Home" asp-action="Index" class="btn btn-primary">BACK TO HOME</a>
@@ -62,7 +62,7 @@
                         <div class="col-3">
                             <div class="input-group input-group-sm mb-3">
                                 <span class="input-group-text bg-primary-subtle fw-bold" id="basic-addon1">Count</span>
-                                <input type="number" asp-for = "Count" class="form-control text-center" style="width:40px" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
+                                <input id="numberValidation" type="number" asp-for = "Count" class="form-control text-center" style="width:40px" placeholder="0" aria-label="Username" aria-describedby="basic-addon1" >
                             </div>
                         </div>
                     </div>
@@ -79,4 +79,13 @@
       </div>
 </form>
 
-
+@section Scripts{
+    <script>
+        $("#form").submit(function(event) {
+            if ($("#numberValidation").val() < 1) {
+                alert("Count cannot be negative");
+                event.preventDefault();
+            }
+        });
+    </script>
+}

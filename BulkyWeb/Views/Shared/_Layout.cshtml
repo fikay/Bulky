@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,25 +47,25 @@
                                 <li class="nav-item text-center ">
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index"> Product </a>
                                 </li>
-                                    <li class="nav-item text-center ">
+                                <li class="nav-item text-center ">
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index"> Company </a>
+                                </li>
+                                    <li class="nav-item text-center ">
+                                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register"> Create User </a>
                                     </li>
-                                
                                 <li><hr class="dropdown-divider"></li>
                                
                             </ul>
                         </li>
                         }
-                        <li class="nav-item ">
-                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                <i class=" bi bi-cart2 text-light"></i> (0)
-                            </a>
-                        </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                   @await Component.InvokeAsync("ShoppingCart")
+                                </a>
+                            </li>
+                        
                     </ul>
-                   
-                </div>
-                
-                
+                </div>     
                 <partial name="_LoginPartial" />
             </div>
         </nav>

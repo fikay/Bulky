@@ -186,6 +186,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
             _unitOfWork.ShoppingCart.DeleteRange(shoppingCarts);
             _unitOfWork.save();
+            HttpContext.Session.Clear();
             return View(id);
         }
 		public IActionResult plus(int cartId)
@@ -199,10 +200,12 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult minus(int cartId)
         {
+            
             var cartFromDb = _unitOfWork.ShoppingCart.Get(x => x.Id == cartId);
             if(cartFromDb.Count <= 1)
             {
                 delete(cartId);
+               
             }
             else
             {
@@ -216,11 +219,14 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult delete(int cartId)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var cartFromDb = _unitOfWork.ShoppingCart.Get(x => x.Id == cartId);
             if(cartFromDb != null)
             {
                 _unitOfWork.ShoppingCart.Delete(cartFromDb);
                 _unitOfWork.save();
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
             }
            
             return RedirectToAction(nameof(Index));
