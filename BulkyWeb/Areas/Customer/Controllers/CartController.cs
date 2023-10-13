@@ -125,7 +125,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
 			if (ApplicationUser.CompanyId == 0 || ApplicationUser.CompanyId == null)
 			{
-                var domain = "https://localhost:7055/";
+                var domain = Request.Scheme+ "://" + Request.Host.Value + "/";
                 //go to stripe
                 var options = new SessionCreateOptions
                 {

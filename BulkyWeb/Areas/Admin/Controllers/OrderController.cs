@@ -137,7 +137,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         {
             OrderVM.OrderHeader = _unitOfWork.OrderHeader.Get(x => x.Id == OrderVM.OrderHeader.Id, includeProperties: "ApplicationUser");
             OrderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(x => x.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
-            var domain = "https://localhost:7055/";
+            var domain = Request.Scheme + "://" + Request.Host.Value + "/";
             //go to stripe
             var options = new SessionCreateOptions
             {
