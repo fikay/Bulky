@@ -5,6 +5,7 @@
 
 # Ignore appsettings.json
 appsettings.json
+appsettings.Production.json
 
 # User-specific files
 *.rsuser
