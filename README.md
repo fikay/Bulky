@@ -79,3 +79,39 @@ This is required in order for it to work
 }
 ```
 
+
+### Connecting and Deploying to AZURE
+
+####Create a SQL server
+In order to have our local database online, we have to create an azure sql server.
+
+**Create Firewall for SQL DB**
+![image](https://github.com/fikay/Bulky/assets/32597117/8d79c474-a882-464d-8dcc-e2ff63c68819)
+
+Once the firewall has been created, We go to the connection string and copy the string to use when we are deploying.
+
+### Deploying  Project
+We created the project in .NET 8 preview so to prevent deployment issues we have to downgrade to Net 7.
+
+#### Steps
+-Edit Project File of all projects and change TargetFramework and package reference to 7 (optional)
+- ![image](https://github.com/fikay/Bulky/assets/32597117/d7737a31-1677-4df0-ae00-33bb470e14a5)
+- Right clickk on the main Project and click **Publish** ![image](https://github.com/fikay/Bulky/assets/32597117/cad8d15e-c48f-47e2-8c94-11586b8d762d)
+- To do this from Azure directly, 
+![image](https://github.com/fikay/Bulky/assets/32597117/0a3976de-e3ea-41d1-9a28-a0ea8d6c6278)
+![image](https://github.com/fikay/Bulky/assets/32597117/fb4cebf1-a45a-42dd-b973-3015b57189fc)
+![image](https://github.com/fikay/Bulky/assets/32597117/9344c38f-572e-40ba-bd4c-2eb3809873d9)
+In order to automatically make changes to the web App directly from github changes, we enable continuous deployment
+![image](https://github.com/fikay/Bulky/assets/32597117/04889af8-8460-4dec-88ef-c8d66c447ebc)
+
+Then we enable public access. Once it has been deployed, we have to connect to the azure Database unless the application will not work.
+
+#### Steps to connect Database
+- Head over to the database in Azure to get the connection string
+- Head over to the project in Visual studio and create a new `appsettings.Production.json` file
+- copy all items in the `appsettings.json` file and put it into the newly created file, then change the Db connection string to that of the azure Db.
+- push to gitHub
+
+
+
+
