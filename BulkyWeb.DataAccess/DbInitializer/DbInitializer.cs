@@ -56,7 +56,7 @@ namespace BulkyWeb.DataAccess.DbInitializer
                     State = "IL",
                     PostalCode = "12345",
                     City = "Regina"
-                }, "Admin123").GetAwaiter().GetResult();
+                }, "Fik@yo123").GetAwaiter().GetResult();
 
                 ApplicationUser User = _db.ApplicationUsers.FirstOrDefault(x => x.UserName == "Admin@yahoo.com");
                 if (User != null)

@@ -53,7 +53,12 @@
                                     <li class="nav-item text-center ">
                                         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register"> Create User </a>
                                     </li>
-                                <li><hr class="dropdown-divider"></li>
+                                    <li class="nav-item text-center ">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User Management </a>
+                                    </li>
+                                <li>
+
+                                <hr class="dropdown-divider"></li>
                                
                             </ul>
                         </li>
@@ -86,8 +91,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/2cfa1jjap9ceuptufq4gaovu66a2lrlkrop4mz3ze2mhdmxb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
