@@ -20,12 +20,24 @@ namespace BulkyWeb.Data
 
         public DbSet<Company> Companies { get; set; }
 
+        public DbSet<ProductImage> ProductImages { get; set; }
+
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
         //public DbSet<Status> Statuses { get; set; }
 
-        
+        // For Logging Purposes
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
+
+        //    // Enable sensitive data logging
+        //    optionsBuilder.EnableSensitiveDataLogging();
+
+        //    // Other configuration options
+        //    // ...
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -58,7 +70,8 @@ namespace BulkyWeb.Data
                     Price50 = 85,
                     Price100 = 80,
                     CategoryId = 3,
-                    ImageUrl =""
+                    ProductImages = null
+                    //ImageUrl =""
                 },
                 new Product
                 {
@@ -71,8 +84,9 @@ namespace BulkyWeb.Data
                     Price = 30,
                     Price50 = 25,
                     Price100 = 20,
-                    CategoryId = 7,
-                    ImageUrl = ""
+                    CategoryId = 1,
+                    ProductImages = null
+                    //ImageUrl = ""
                 },
                 new Product
                 {
@@ -85,8 +99,9 @@ namespace BulkyWeb.Data
                     Price = 50,
                     Price50 = 40,
                     Price100 = 35,
-                    CategoryId = 8,
-                    ImageUrl = ""
+                    CategoryId = 2,
+                    ProductImages = null
+                    //ImageUrl = ""
                 },
                 new Product
                 {
@@ -99,8 +114,9 @@ namespace BulkyWeb.Data
                     Price = 65,
                     Price50 = 60,
                     Price100 = 55,
-                    CategoryId =10,
-                    ImageUrl = ""
+                    CategoryId = 4,
+                    ProductImages = null
+                    //ImageUrl = ""
                 },
                 new Product
                 {
@@ -113,8 +129,9 @@ namespace BulkyWeb.Data
                     Price = 27,
                     Price50 = 25,
                     Price100 = 20,
-                    CategoryId =10,
-                    ImageUrl = ""
+                    CategoryId = 1,
+                    ProductImages = null
+                    //ImageUrl = ""
                 },
                 new Product
                 {
@@ -127,10 +144,11 @@ namespace BulkyWeb.Data
                     Price = 23,
                     Price50 = 22,
                     Price100 = 20,
-                    CategoryId = 7,
-                    ImageUrl = ""
+                    CategoryId = 3,
+                    ProductImages = null
+                    //ImageUrl = ""
                 }
-            );
+            ); ;
             modelBuilder.Entity<Company>().HasData(
                 new Company { Id=3, Name= "Delicious Snacks" , City ="Vancouver", PostalCode = "K1V0E7", State = "Alberta", StreetAddress ="12223 lesington street", PhoneNumber= "306-888-9999"}
                 

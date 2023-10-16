@@ -28,18 +28,18 @@ namespace BulkyWeb.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-               if (claim != null)
+            if (claim != null)
             {
                 HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
             }
-            List<Product> productList= _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            List<Product> productList= _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages").ToList();
             return View(productList);
         }
 
         public IActionResult Details(int  Id)
         {
             ShoppingCart cart = new ShoppingCart() 
-            { Product = _unitOfWork.Product.Get(x => x.Id == Id, includeProperties: "Category"), 
+            { Product = _unitOfWork.Product.Get(x => x.Id == Id, includeProperties: "Category,ProductImages"), 
               ProductId = Id,
               Count =1
             };

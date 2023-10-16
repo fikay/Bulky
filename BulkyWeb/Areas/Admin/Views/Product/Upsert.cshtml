@@ -11,7 +11,7 @@
             <form method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <input asp-for="Product.Id" hidden/>
-                <input asp-for="Product.ImageUrl" hidden/>
+               @*  <input asp-for="Product.ImageUrl" hidden/> *@
                 <div class="row">
                     <div class="col-10">
                         <div class="mb-3">
@@ -65,9 +65,9 @@
                             <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="Product.ImageUrl" class="form-label"></label>
-                            <input type="file" name="file" asp-for="Product.ImageUrl" class="form-control" id="ImageUrl">
-                            <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+                            <label asp-for="Product.ProductImages" class="form-label"></label>
+                            <input type="file" name="files" asp-for="Product.ProductImages" class="form-control" id="ImageUrl" multiple>
+                            <span asp-validation-for="Product.ProductImages" class="text-danger"></span>
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-3 offset-md-3">
@@ -80,8 +80,19 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <img src="@Model.Product.ImageUrl" width="100%" alt="Book Image"
-                             style="border-radius:5px; border:1px solid white">
+                        @if(Model.Product.ProductImages != null)
+                        {
+                            foreach (var images in Model.Product.ProductImages)
+                            {
+                                <div class="text-center my-1">
+                                     <img src="@images.ImageUrl" width="100%" alt="Book Image"
+                                         style="border-radius:5px; border:1px solid white">
+                                    <a asp-action="DeleteImage" asp-route-imageId = "@images.Id" class="btn btn-danger text-center"><i class="bi bi-trash-fill">Delete</i></a>
+                                </div>
+                      
+                            }
+                        }
+                        
                     </div>
 
                 </div>
@@ -94,7 +105,7 @@
 </div>
 
 @section Scripts{
-    <script>
+    @* <script>
         tinymce.init({
             selector: 'textarea',
             plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons   lists  searchreplace  visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
@@ -107,7 +118,7 @@
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
         });
-    </script>
+    </script> *@
     @{
         <partial name="_ValidationScriptsPartial" />
     }

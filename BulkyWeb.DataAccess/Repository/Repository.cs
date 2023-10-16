@@ -45,21 +45,31 @@ namespace BulkyWeb.DataAccess.Repository
             if (tracked)
             {
                 query = dbSet;
+                query = query.Where(filter);
+                if (!String.IsNullOrEmpty(includeProperties))
+                {
+                    foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(property);
+                    }
+                }
+                return query.FirstOrDefault();
             }
             else
             {
                query = dbSet.AsNoTracking();
-               
-            }
-            query = query.Where(filter);
-            if (!String.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                query = query.Where(filter);
+                if (!String.IsNullOrEmpty(includeProperties))
                 {
-                    query = query.Include(property);
+                    foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(property);
+                    }
                 }
+                return query.FirstOrDefault();
+
             }
-            return query.FirstOrDefault();
+           
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> ? filter = null, string ? includeProperties = null)

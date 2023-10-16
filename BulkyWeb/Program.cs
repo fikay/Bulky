@@ -7,9 +7,10 @@ using BulkyWeb.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Stripe;
 using BulkyWeb.DataAccess.DbInitializer;
+using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
 
 var builder = WebApplication.CreateBuilder(args);
-
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 // Add services to the container.
  builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>
@@ -25,12 +26,17 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 
 });
-//builder.Services.AddAuthentication().AddFacebook(option =>
-//{
-//    option.AppId = "661298326099219";
-//    option.AppSecret = "5e52ec3933fea947a5d7257a32a47374";
-//});
-builder.Services.Configure<FacebookSettings>(builder.Configuration.GetSection("Facebook"));
+builder.Services.AddAuthentication().AddMicrosoftAccount(option =>
+{
+    option.ClientId = configuration["Microsoft:ClientId"];
+    option.ClientSecret = configuration["Microsoft:ClientSecret"];
+});
+builder.Services.AddAuthentication().AddFacebook(option =>
+{
+    option.AppId = configuration["Facebook:AppId"];
+    option.AppSecret = configuration["Facebook:AppSecret"];
+});
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

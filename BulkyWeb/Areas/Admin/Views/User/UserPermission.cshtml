@@ -1,0 +1,71 @@
+﻿@model RoleManagementVM
+
+
+<div class="card shadow border-0 my-5">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row col-12 text-center">
+            <h2 class="text-white py-2">Update Permissions</h2>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="flex-column">
+            <form method="post" >
+                <div class="row">
+                    <input hidden asp-for="User.Id" class="form-control">
+                    <div class="col-10">
+                        <div class="mb-3">
+                            <label asp-for="User.Name" class="form-label"></label>
+                            <input asp-for="User.Name" class="form-control" id="ProductName" aria-describedby="Name">
+                            <span asp-validation-for="User.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="User.Role" class="form-label"></label>
+                            <Select id="company" asp-for="User.Role" asp-items="@Model.Roles" class="form-control">
+                            </Select>
+                            <span asp-validation-for="User.Role" class="text-danger"></span>
+                        </div>
+                        <div id="toggle"  class="mb-3 d-none">
+                            <label asp-for="User.Company" class="form-label"></label>
+                            <Select asp-for="User.Company" asp-items="@Model.CompanyList" class="form-control">
+                            </Select>
+                            <span asp-validation-for="User.Company" class="text-danger"></span>
+                        </div>
+
+                </div>
+                    <div class="row">
+                        <div class="col-6 col-md-3 offset-md-3">
+                            <button type="submit" class="btn btn-primary form-control">Update</button>
+                        </div>
+                        <div class="col-6 col-md-3 text-center align-items-center">
+                            <a class=" btn btn-primary form-control" asp-controller="User" asp-action="Index"> Back To Users List</a>
+                        </div>
+
+                    </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+                        @section Scripts{
+                            <script>
+                                $(document).ready(function () {
+                                    
+                                    if ($('#company').val() == 'Company' ){
+                                        $('#toggle').removeClass('d-none')
+                                    }
+                                  })
+
+
+                                $('#company').on("change", function () {
+                                    if ($('#company').val() != 'Company') {
+                                        $('#toggle').addClass('d-none')
+                                    }
+                                    else {
+                                        $('#toggle').removeClass('d-none')
+                                    }
+
+
+                                })
+                            </script>
+                        }
