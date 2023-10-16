@@ -18,17 +18,19 @@ namespace BulkyWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private UserManager<IdentityUser> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
         
        
         ApplicationDbContext _db;
 
         
 
-        public UserController( IUnitOfWork unitOfWork, ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public UserController( IUnitOfWork unitOfWork, ApplicationDbContext db, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _unitOfWork = unitOfWork;
             _db = db;
             _userManager = userManager;
+
         }
         public IActionResult Index()
         {

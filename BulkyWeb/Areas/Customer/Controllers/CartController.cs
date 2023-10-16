@@ -37,9 +37,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 OrderHeader = new()
                 
             };
+            IEnumerable<ProductImage> productImages = _unitOfWork.ProductImage.GetAll();
+
+
 
             foreach (ShoppingCart cart in ShoppingCartVM.ShoppingCartList )
             {
+               cart.Product.ProductImages =   productImages.Where(x => x.productId == cart.ProductId).ToList();
                 cart.Price = GetPriceBasedOnQuantity( cart );
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price* cart.Count); 
             }
@@ -153,7 +157,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                     };
                     options.LineItems.Add(sessionLineItem);
                 }
-
+                
 				var service = new SessionService();
 				Session session = service.Create(options);
                 _unitOfWork.OrderHeader.updateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
